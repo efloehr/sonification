@@ -1,0 +1,62 @@
+How does a computer communicate with you?
+
+What can sound communicate?
+    Emotion
+    Information
+    
+Listen to screen reader audio
+http://blog.freecodecamp.com/2015/01/a-vision-of-coding-without-opening-your-eyes.html
+
+Describe the audio, what was it? What did it convey? What kind of words?
+
+Focus on sound to convey information.
+
+Data visualization -- graphs, charts, colors
+
+Data sonification -- pitch, duration, volume, instrument
+
+
+Who has generated sound in an app/program?
+
+Who has generated sound in Python?
+
+Real-time sound versus generating sound files.
+
+
+
+built-in wave library
+
+random values -- random_wave.py
+
+sizes of timelapse images - timelapse_image_sizes.py
+
+play timelapse size sample -- what do you hear
+    static
+    static beat
+    quieter beat at twice the frequency of static beat
+    static/quieter differences
+    camera going bad
+
+sine wave -- sine440.py
+
+random notes -- robot.py
+
+phase -- robot_phased.py
+
+sawtooth
+
+square/pulse
+
+
+
+MIDI
+
+pyknon library
+
+play a note or two -- miditest.py
+
+temperatures!
+
+play sample
+
+
