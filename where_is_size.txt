@@ -1,0 +1,6 @@
+If you want to play around with timelapse file sizes, you can
+find the file "size.txt" at the following location:
+
+https://www.dropbox.com/s/qeohbmgchw8nv6v/timelapse_file_sizes.txt?dl=0
+
+(putting this 80Mb file in github is not a great idea)
