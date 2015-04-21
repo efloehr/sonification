@@ -1,4 +1,4 @@
-A3,Q
+A3,Q 
 A3,Q
 A3,Q
 F3,T
@@ -7,7 +7,7 @@ A3,Q
 F3,T
 C4,S
 A3,H
-E4,Q
+E4,Q 
 E4,Q
 E4,Q
 F4,T
@@ -25,6 +25,7 @@ G4,S
 Gb4,S
 E4,S
 F4,E
+REST,E
 Bb3,E
 Eb4,Q
 D4,T
@@ -32,6 +33,7 @@ Db4,S
 C4,S
 B3,S
 C4,E
+REST,E
 F3,E
 Ab3,Q
 F3,T
@@ -49,6 +51,7 @@ G4,S
 Gb4,S
 E4,S
 F4,E
+REST,E
 Bb3,E
 Eb4,Q
 D4,T
@@ -56,6 +59,7 @@ Db4,S
 C4,S
 B3,S
 C4,E
+REST,E
 F3,E
 Ab3,Q
 F3,T
