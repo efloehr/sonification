@@ -38,7 +38,7 @@ def percentages_to_volumes(size_percs):
 
 def main():
     # Create a new wave file
-    wv = wave.open('timelapse_image_sizes.wav', 'w')
+    wv = wave.open('output/timelapse_image_sizes.wav', 'w')
     wv.setparams((CHANNELS, WIDTH, RATE, FRAMES, COMPRESSION_TYPE, COMPRESSION_NAME))
     
     sizes = get_sizes()

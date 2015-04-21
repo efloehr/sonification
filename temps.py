@@ -37,7 +37,7 @@ def obs_to_note(obs):
         pass
     return Note(pitch, octave, dur, int(volume * 120))
 
-obs = read_obs('kcmh_2014_03_obs.csv')
+obs = read_obs('data/kcmh_2014_03_obs.csv')
 
 obs_notes = NoteSeq()
 for ob in obs:
@@ -45,4 +45,4 @@ for ob in obs:
 
 midi = Midi(1, tempo=90, instrument=1)
 midi.seq_notes(obs_notes, track=0)
-midi.write("temps_2014_03.mid")
+midi.write("output/temps_2014_03.mid")

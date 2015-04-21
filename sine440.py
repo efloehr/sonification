@@ -32,7 +32,7 @@ def play_sine_freq(wave_file, freq_hz, volume, time_ms):
 
 def main():
     # Create a new wave file
-    wv = wave.open('sine440.wav', 'w')
+    wv = wave.open('output/sine440.wav', 'w')
     wv.setparams((CHANNELS, WIDTH, RATE, FRAMES, COMPRESSION_TYPE, COMPRESSION_NAME))
     play_sine_freq(wv, 440.0, MAXVOL, 4000)
     wv.close()

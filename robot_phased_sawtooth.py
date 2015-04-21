@@ -1,8 +1,8 @@
 from struct import pack
-from math import sin, pi
+from math import sin, pi, floor
 import wave
 import random
-from piano_notes import duration, piano_note
+
 
 # Parameters for wave file
 RATE=44100                        # Samples per second
@@ -16,20 +16,19 @@ COMPRESSION_NAME='not compressed' # Name of compression type
 MAXVOL = 2**15-1.0
 MINVOL = -2**15
 
-
-def ms_to_samples(time_ms):
-    return int(round(time_ms * RATE / 1000.0))
+# Convenience
+TWOPI = 2.0 * pi
 
 
 def play_sine_freq(wave_file, freq_hz, volume, time_ms, start_phase=0):
     '''
     Pass in wave file, the frequency in Hertz, how long to play, and the starting
-    phase in radians.
+    phase in percent.
     '''
     wvData = ""
-    angular_frequency = 2.0 * pi * freq_hz
-    num_samples = ms_to_samples(time_ms)
-    phase = start_phase
+    angular_frequency = TWOPI * freq_hz
+    num_samples = int(round(time_ms * RATE / 1000.0))
+    phase = start_phase * TWOPI
 
     t = 0.0
     for i in xrange(0, num_samples):
@@ -38,41 +37,40 @@ def play_sine_freq(wave_file, freq_hz, volume, time_ms, start_phase=0):
         wvData += pack('h', int(round(volume * sin(phase))))
 
     wave_file.writeframes(wvData)
-    return (angular_frequency * num_samples / float(RATE) + start_phase) % (2.0 * pi)
+    return ((angular_frequency * num_samples / float(RATE) + start_phase) % TWOPI) / TWOPI
 
 
-def play_rest(wave_file, time_ms):
+def play_sawtooth_freq(wave_file, freq_hz, volume, time_ms, start_phase=0):
     wvData = ""
-    num_samples = ms_to_samples(time_ms)
+    num_samples = int(round(time_ms * RATE / 1000.0))
+
+    t = 0.0
     for i in xrange(0, num_samples):
-        wvData += pack('h', 0)
+        t = i / float(RATE)
+        print t, t/freq_hz
+        wvData += pack('h', int(round(volume * 2.0 * (t * freq_hz - floor(0.5 + t * freq_hz)))))
+
     wave_file.writeframes(wvData)
-    
+    return ((t + 1) % RATE) / float(RATE)
 
-def get_notes(filename):
-    notes = []
-    with open(filename) as f:
-        for line in f:
-            notes.append(line.strip().split(','))
-    return notes
 
+def play_square_freq(wave_file, freq_hz, volume, time_ms, start_phase=0):
+    pass
 
 def main():
     # Create a new wave file
-    wv = wave.open('output/imperial_march.wav', 'w')
+    wv = wave.open('output/robot_phased_sawtooth.wav', 'w')
     wv.setparams((CHANNELS, WIDTH, RATE, FRAMES, COMPRESSION_TYPE, COMPRESSION_NAME))
     
-    WHOLE_NOTE_MS = 1500
+    NOTE_DURATION = 100
+    NUMBER_OF_NOTES = 50
+    MIN_FREQ = 28
+    MAX_FREQ = 4186
 
     start_phase = 0
-    notes = get_notes('data/imperial_march.csv')
-    for note in notes:
-        freq, dur = note
-        freq = piano_note[freq]
-        dur = duration[dur] * WHOLE_NOTE_MS
-        print note, freq, dur
-        start_phase = play_sine_freq(wv, freq, MAXVOL, dur, start_phase)
-	play_rest(wv, 5)
+    for note_num in xrange(0, NUMBER_OF_NOTES):
+        freq = random.random() * (MAX_FREQ - MIN_FREQ) + MIN_FREQ
+        start_phase = play_sawtooth_freq(wv, freq, MAXVOL, NOTE_DURATION, start_phase)
 
     wv.close()
     

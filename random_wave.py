@@ -17,7 +17,7 @@ MINVOL = -2**15
 
 def main():
     # Create a new wave file
-    wv = wave.open('random.wav', 'w')
+    wv = wave.open('output/random.wav', 'w')
     wv.setparams((CHANNELS, WIDTH, RATE, FRAMES, COMPRESSION_TYPE, COMPRESSION_NAME))
     
     wvData = ""

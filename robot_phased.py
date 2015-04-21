@@ -39,7 +39,7 @@ def play_sine_freq(wave_file, freq_hz, volume, time_ms, start_phase=0):
 
 def main():
     # Create a new wave file
-    wv = wave.open('robot_phased.wav', 'w')
+    wv = wave.open('output/robot_phased.wav', 'w')
     wv.setparams((CHANNELS, WIDTH, RATE, FRAMES, COMPRESSION_TYPE, COMPRESSION_NAME))
     
     NOTE_DURATION = 100
